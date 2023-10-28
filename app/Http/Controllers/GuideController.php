@@ -7,11 +7,38 @@ use App\Models\Hotel;
 use App\Models\Location;
 use App\Models\TouristSpot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use App\Models\Review; // Đảm bảo bạn đã import mô hình Review
 class GuideController extends Controller
 {
+
+    public function postReview(Request $request)
+    {
+        // Kiểm tra xem người dùng đã đăng nhập chưa
+        if (!Auth::check()) {
+            return redirect()->back()->with('error', 'You need to be logged in to post a review.');
+        }
+
+        // Lấy dữ liệu từ biểu mẫu và xác thực nó
+        $data = $request->validate([
+            'guide_id' => 'required',
+            'rating' => 'required|integer|between:1,5',
+            'comment' => 'required|max:255',
+        ]);
+
+        // Lưu đánh giá vào cơ sở dữ liệu
+        Review::create([
+            'user_id' => Auth::user()->id,
+            'guide_id' => $data['guide_id'],
+            'rating' => $data['rating'],
+            'comment' => $data['comment'],
+        ]);
+
+        return redirect()->back()->with('success', 'Review posted successfully.');
+    }
+
     //
     public function add_guide()
     {

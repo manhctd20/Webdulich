@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AirTicket;
-use App\Models\BookAirTicket;
 use App\Models\BookGuide;
 use App\Models\BookHotel;
 use App\Models\Location;
 use App\Models\TouristSpot;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ManageBookingController extends Controller
@@ -112,38 +110,7 @@ class ManageBookingController extends Controller
         return back();
     }
 
-    public function manage_ticket_booking()
-    {
-        return view('user.ticket-booking.manage-ticket-booking',[
-            'bookings'=>DB::table('book_air_tickets')
-                ->join('users','book_air_tickets.user_id','users.id')
-                ->join('air_tickets','book_air_tickets.ticket_id','air_tickets.id')
-                ->select('book_air_tickets.*','users.name','air_tickets.air_name')
-                ->where('book_air_tickets.user_id',Auth::user()->id)
-                ->get(),
-        ]);
-    }
-
-    public function edit_ticket_booking($id)
-    {
-
-        $single_data = BookAirTicket::find($id);
-//        return $single_data;
-        return view('user.ticket-booking.edit-ticket-booking',[
-            'business'=>BookAirTicket::where('sit_type','business_class'),
-            'economy'=>BookAirTicket::where('sit_type','economy_class'),
-            'locations'=>Location::get(),
-            'ticket'=>AirTicket::find($single_data->ticket_id),
-            'single_data'=>$single_data,
-        ]);
-    }
-
-    public function edit_ticket_payment(Request $request)
-    {
-        return view('frontend.airTicket.edit-air-ticket-payment',[
-            'data'=>$request,
-        ]);
-    }
+    
 
     public function edit_guide_payment(Request $request)
     {
@@ -161,24 +128,4 @@ class ManageBookingController extends Controller
         ]);
     }
 
-    public function update_ticket_booking(Request $request)
-    {
-//        return $request;
-        BookAirTicket::update_ticket_booking($request);
-        Alert::toast('Ticket Book Updated Successfully');
-
-        return redirect()->route('manage.ticket.booking');
-    }
-
-    public function delete_ticket_booking(Request $request)
-    {
-        $ticket = BookAirTicket::find($request->id);
-        if($ticket->image){
-            unlink($ticket->image);
-        }
-        $ticket->delete();
-        Alert::toast('Ticket Booking deleted successfully');
-
-        return back();
-    }
 }

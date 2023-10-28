@@ -1,41 +1,37 @@
 <footer class="footer">
 
-
-
-
     <div class="footer-middle">
         <div class="container">
             <div class="bottom-inner">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
 
                         <div class="single-footer f-contact">
-                            <h3>Get In Touch With Us</h3>
-                            <p class="phone">Phone: +8801703340330</p>
+                            <h3>Liên hệ với chúng tôi:</h3>
+                            <p class="phone">Di Động: +84123456789</p>
+                            <p class="phone">Email: email@gmail.com</p>
                             <ul>
-                                <li><span>Sunday-Thursday: </span> 9.00 am - 8.00 pm</li>
-                                <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
+                                <li><span>Thứ 2 - Thứ 6: </span> 9.00 am - 8.00 pm</li>
+                                <li><span>Thứ 7: </span> 10.00 am - 6.00 pm</li>
                             </ul>
-
                         </div>
-
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
 
                         <div class="single-footer our-app">
-                            <h3>Our Mobile App</h3>
+                            <h3>Ứng dụng di động:</h3>
                             <ul class="app-btn">
                                 <li>
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-apple"></i>
-                                        <span class="small-title">Download on the</span>
+                                        <span class="small-title">Tải xuống trên</span>
                                         <span class="big-title">App Store</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-play-store"></i>
-                                        <span class="small-title">Download on the</span>
+                                        <span class="small-title">Tải xuống trên</span>
                                         <span class="big-title">Google Play</span>
                                     </a>
                                 </li>
@@ -43,7 +39,7 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12">
+                    {{-- <div class="col-lg-3 col-md-6 col-12">
 
                         <div class="single-footer f-link">
                             <h3>Information</h3>
@@ -56,20 +52,17 @@
                             </ul>
                         </div>
 
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
+                    </div> --}}
+                    <div class="col-lg-4 col-md-6 col-12">
 
                         <div class="single-footer f-link">
-                            <h3>Tour Departments</h3>
+                            <h3>Dịch vụ khác:</h3>
                             <ul>
-                                <li><a href="javascript:void(0)">Hotel</a></li>
-                                <li><a href="javascript:void(0)">Locations</a></li>
-                                <li><a href="javascript:void(0)">Spots</a></li>
-                                <li><a href="javascript:void(0)">Tour Guides</a></li>
-                                <li><a href="javascript:void(0)">Air Tickets</a></li>
+                                <li><a href="javascript:void(0)">Khách sạn</a></li>
+                                <li><a href="javascript:void(0)">Hướng dẫn viên</a></li>
+                                <li><a href="javascript:void(0)">Phòng vé</a></li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -83,19 +76,20 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-12">
                         <div class="payment-gateway">
-                            <span>We Accept:</span>
-                            <img src="{{asset('/')}}website/assets/images/footer/credit-cards-footer.png" alt="#">
+                            <span>Thanh toán:</span>
+                            <img src="{{ asset('/') }}website/assets/images/footer/credit-cards-footer.png"
+                                alt="#">
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
                         <div class="copyright">
-                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow" target="_blank">US</a></p>
+                            {{-- <p>Thiết kế và phát triển năm 2023</p> --}}
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
                         <ul class="socila">
                             <li>
-                                <span>Follow Us On:</span>
+                                <span>Theo dõi trên:</span>
                             </li>
                             <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
                             <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
@@ -109,7 +103,6 @@
     </div>
 
 </footer>
-
 
 <a href="#" class="scroll-top">
     <i class="lni lni-chevron-up"></i>
