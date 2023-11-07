@@ -33,9 +33,9 @@
                             <div class="single-slider"
                                 style="background-image: linear-gradient(to left, rgba(38,38,38,0.52), rgba(16,15,15,0.73)),url({{ asset('/') }}website/assets/images/slide/anh2.jpg);">
                                 <div class="content">
-                                    <h3 class="text-light">Du lịch Việt Nam..</h3>
+                                    <h3 class="text-light">Du lịch Việt Nam.</h3>
                                     <div class="button">
-                                        <a href="" class="btn">Xem chi tiết</a>
+                                        <a href="{{ route('tour.list') }}" class="btn">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -43,29 +43,9 @@
                             <div class="single-slider"
                                 style="background-image: linear-gradient(to left, rgba(38,38,38,0.52), rgba(16,15,15,0.73)),url({{ asset('/') }}website/assets/images/slide/anh3.jpg);">
                                 <div class="content">
-                                    <h3 class="text-light">Đi xuyên Việt.</h3>
+                                    <h3 class="text-light">Khám  phá văn hóa Việt Nam.</h3>
                                     <div class="button">
-                                        <a href="" class="btn">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-slider"
-                                style="background-image: linear-gradient(to left, rgba(38,38,38,0.52), rgba(16,15,15,0.73)),url({{ asset('/') }}website/assets/images/slide/anh4.jpg);">
-                                <div class="content">
-                                    <h3 class="text-light">Đi xuyên Việt.</h3>
-                                    <div class="button">
-                                        <a href="" class="btn">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-slider"
-                                style="background-image: linear-gradient(to left, rgba(38,38,38,0.52), rgba(16,15,15,0.73)),url({{ asset('/') }}website/assets/images/slide/anh5.jpg);">
-                                <div class="content">
-                                    <h3 class="text-light">Đi xuyên Việt.</h3>
-                                    <div class="button">
-                                        <a href="" class="btn">Xem chi tiết</a>
+                                        <a href="{{ route('tour.list') }}" class="btn">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +94,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>Tour nổi bật</h2>
-                        <p>Tour du lịch hấp dẫn đến bạn và gia đình.</p>
+                        <p>Tour du lịch hấp dẫn dành cho bạn và gia đình.</p>
                     </div>
                 </div>
             </div>

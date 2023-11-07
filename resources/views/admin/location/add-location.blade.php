@@ -39,8 +39,8 @@
                         <form action="{{route('save.location')}}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="location" class="form-label">Location Name</label>
-                                <input type="text" class="form-control" id="location" name="location_name" placeholder="Enter Location Name">
+                                <label for="name" class="form-label">Location Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Location Name">
                             </div>
                             <button type="submit" class="btn btn-success me-2 text-white">Add Location</button>
                         </form>

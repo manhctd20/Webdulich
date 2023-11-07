@@ -2,42 +2,83 @@
 @section('title')
     Order Payment
 @endsection
+
+<script>
+    function updateTotalPrice() {
+    var num_people = document.getElementById('num_people').value;
+    var option = document.getElementById('tour').options[document.getElementById('tour').selectedIndex];
+    var price = parseFloat(option.getAttribute('data-price'));
+    var totalPrice = num_people * price;
+    
+    var formattedTotalPrice = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    
+    document.getElementById('totalPrice').value = totalPrice;
+    document.getElementById('totalPriceDisplay').textContent = formattedTotalPrice;
+}
+
+</script>
+
 @section('body')
     <div class="container">
-        <div class="checkout-sidebar-price-table mt-30">
-            {{-- <h5 class="title">Pricing Table</h5>
-            <div class="sub-total-price">
-                <div class="total-price">
-                    <p class="value">Salary</p>
-                    <p class="price">{{$data->salary}}</p>
+        <div class="row justify-content-center mt-30 mb-30">
+            <div class="col-lg-8">
+                <div class="card p-4">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <h3 class="text-center">Đặt tour</h3>
+                    <form action="{{route('tour.book')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                        <div class="form-group mb-3">
+                            <label for="tour">Tour</label>
+                            <select class="form-control" name="tour_id" id="tour">
+                                @foreach ($tours as $tour)
+                                    <option value="{{ $tour->id }}" {{ $tourId == $tour->id ? 'selected' : '' }}
+                                        data-price="{{ $tour->price }}">
+                                        {{ $tour->name }} -- {{ number_format($tour->price) }} vnđ
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="number" class="form-control" id="phone" name="phone"
+                                value="{{ old('phone') }}" placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="num_people">Số người tham gia:</label>
+                            <input type="number" class="form-control" id="num_people" name="num_people"
+                                value="{{ old('num_people') }}" placeholder="Nhập số người tham gia"
+                                onchange="updateTotalPrice()">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="address">Địa điểm đón:</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                value="{{ old('address') }}" placeholder="Nhập địa chỉ đón">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="fromDate">Ngày bắt đầu:</label>
+                            <input type="date" class="form-control" id="fromDate" name="fromDate"
+                                value="{{ old('fromDate') }}">
+                        </div>
+                        <input type="hidden" name="totalPrice" id="totalPrice" value="{{ old('totalPrice') }}">
+                        <div class="mb-3">Tổng: <span id="totalPriceDisplay"></span></div>
+
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    </form>
+
                 </div>
-
-
             </div>
-            <div class="total-payable">
-                <div class="payable-price">
-                    <p class="value">Subotal Payment:</p>
-                    <p class="price">{{$data->salary}}</p>
-                </div>
-            </div>
-            <form action="{{route('guide.book')}}" method="POST">
-                @csrf
-
-                <input type="hidden" name="date" value="{{$data->date}}">
-                <input type="hidden" name="user_id" value="{{$data->user_id}}">
-                <input type="hidden" name="guide_id" value="{{$data->guide_id}}">
-                <label class="mb-2"><b>Enter Payable Amount</b></label>
-                <div class="row">
-                    <div class="col-md-12 form-input form">
-                        <input type="number" name="salary_payment" min="0" class="form-control" placeholder="Enter amount" required>
-                    </div>
-                </div>
-                <div class="price-table-btn button">
-                    <button type="submit" class="btn btn-alt">Pay Now</button>
-                </div>
-            </form> --}}
         </div>
     </div>
-
 
 @endsection

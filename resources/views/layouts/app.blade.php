@@ -82,6 +82,6 @@
         </main>
     </div>
     <script src="{{asset('assets')}}/js/bootstrap.bundle.min.js"></script>
-
+    @stack('script-alt')
 </body>
 </html>

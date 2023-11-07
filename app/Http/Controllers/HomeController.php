@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookGuide;
-use App\Models\BookHotel;
-use App\Models\Guide;
-use App\Models\Hotel;
 use App\Models\Location;
+use App\Models\Order;
+use App\Models\Tour;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -30,14 +28,14 @@ class HomeController extends Controller
     {
         return view('user.home.home',[
             'locations'=>Location::get(),
-            'guides'=>BookGuide::where('user_id',Auth::user()->id)
+            'guides'=>Order::where('user_id',Auth::user()->id)
         ]);
     }
     public function adminHome()
     {
         return view('admin.home.index',[
             'locations'=>Location::get(),
-            'guides'=>Guide::get()
+            'guides'=>Tour::get()
         ]);
     }
 }

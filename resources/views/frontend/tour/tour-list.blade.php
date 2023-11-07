@@ -63,7 +63,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-info">
-                                                   
+
                                                     <h4 class="title">
                                                         <a href="#">{{ $tour->name }}</a>
                                                     </h4>
@@ -109,6 +109,7 @@
                                                             <h4 class="title">
                                                                 <a href="#">{{ $tour->name }}</a>
                                                             </h4>
+                                                            <p class="my-2">Địa điểm: {{ $tour->location_name }}</p>
                                                             <p class="my-2">Giá: {{ number_format($tour->price) }}</p>
                                                             <p class="my-2">Thời gian: {{ $tour->duration }}</p>
                                                             <ul class="review">

@@ -6,7 +6,7 @@
     <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <h2>Giới thiệu</h2>
                     <p class="about">
                         Hệ thống là trang web cung cấp các thông tin hữu ích cho khách hàng về những tour du lịch, địa điểm
@@ -23,36 +23,36 @@
                         <li>Địa chỉ: Hà Đông, Hà Nội, Việt Nam </li>
                     </ul>
                 </div>
-                <div class="col-md-6">
-                    <h2>Form Liên Hệ</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Họ và Tên</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Nhập địa chỉ email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Nội dung</label>
-                            <textarea class="form-control" id="message" rows="4" placeholder="Nhập nội dung liên hệ"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
-                    </form>
-                </div>
+            </div>
+            <div class="col-md-6">
+                {{-- <h2>Form Liên Hệ</h2> --}}
+                <form class="form-contact">
+                    <div class="form-group">
+                        <label class="item" for="name">Họ và Tên</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="form-group">
+                        <label class="item" for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Nhập địa chỉ email">
+                    </div>
+                    <div class="form-group">
+                        <label class="item" for="message">Nội dung</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Nhập nội dung liên hệ"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi</button>
+                </form>
             </div>
         </div>
     </section>
 
     <style>
-        /* Tùy chỉnh CSS cho phần liên hệ */
+
         .section {
             padding: 60px 0;
         }
     
         h2 {
-            font-size: 18px;
+            font-size: 16px;
             color: #333;
             margin-bottom: 20px;
         }
@@ -77,7 +77,7 @@
             margin-bottom: 10px;
         }
     
-        form {
+        .form-contact {
             background-color: #f8f9fa;
             padding: 20px;
             border-radius: 5px;
@@ -86,23 +86,21 @@
         .form-group {
             margin-bottom: 20px;
         }
-    
-        label {
-            font-weight: bold;
-            font-size: 18px;
-        }
-    
-        .form-control {
-            padding: 10px;
+        .form-group .item{
             font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .form-group .form-control::placeholder{
+            font-size: 14px;
         }
     
         .btn-primary {
             background-color: #007bff;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 5px 20px;
+            font-size: 16px;
         }
     
         .btn-primary:hover {

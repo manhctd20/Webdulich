@@ -9,6 +9,7 @@ class Tour extends Model
 {
     use HasFactory;
     public static $data,$image,$imageName,$directory,$imageUrl;
+    public $timestamps = false;
 
     public static function save_tour($request)
     {
@@ -18,7 +19,7 @@ class Tour extends Model
         self::$data->duration = $request->duration;
         self::$data->price = $request->price;
         self::$data->image = self::saveImage($request);
-        self::$data->description = $request->description;
+        self::$data->description = $request->input('description');
         self::$data->save();
     }
     public static function update_tour($request)
@@ -28,7 +29,7 @@ class Tour extends Model
         self::$data->location_id = $request->location_id;
         self::$data->duration = $request->duration;
         self::$data->price = $request->price;
-        self::$data->description = $request->description;
+        self::$data->description = $request->input('description');
         if($request->file('image')){
             if(self::$data->image){
                 if(file_exists(self::$data->image)){
@@ -65,7 +66,7 @@ class Tour extends Model
 
     public function showTour($id)
     {
-        $Tour = tour::with('reviews')->find($id);
+        $tour = tour::with('reviews')->find($id);
         return view('frontend.tour.tour-details', compact('tours'));
     }
 }

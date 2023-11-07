@@ -42,7 +42,7 @@
                             <input type="hidden" name="id" value="{{$location->id}}">
                             <div class="form-group">
                                 <label for="location" class="form-label">Location Name</label>
-                                <input type="text" class="form-control" id="location" name="location_name" value="{{$location->location_name}}" placeholder="Enter Location Name">
+                                <input type="text" class="form-control" id="location" name="name" value="{{$location->name}}" placeholder="Enter Location Name">
                             </div>
                             <button type="submit" class="btn btn-success me-2 text-white">Update Location</button>
                         </form>

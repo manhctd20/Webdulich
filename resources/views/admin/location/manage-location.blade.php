@@ -44,7 +44,7 @@
                     <tbody>
                     @foreach($locations as $location)
                     <tr>
-                        <td>{{$location->location_name}}</td>
+                        <td>{{$location->name}}</td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <a href="{{route('edit.location',['id'=>$location->id])}}" class="btn btn-sm btn-primary me-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

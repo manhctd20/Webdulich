@@ -11,52 +11,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Review; // Đảm bảo bạn đã import mô hình Review
+use App\Models\Tour;
+
 class GuideController extends Controller
 {
-
-    public function postReview(Request $request)
-    {
-        // Kiểm tra xem người dùng đã đăng nhập chưa
-        if (!Auth::check()) {
-            return redirect()->back()->with('error', 'You need to be logged in to post a review.');
-        }
-
-        // Lấy dữ liệu từ biểu mẫu và xác thực nó
-        $data = $request->validate([
-            'guide_id' => 'required',
-            'rating' => 'required|integer|between:1,5',
-            'comment' => 'required|max:255',
-        ]);
-
-        // Lưu đánh giá vào cơ sở dữ liệu
-        Review::create([
-            'user_id' => Auth::user()->id,
-            'guide_id' => $data['guide_id'],
-            'rating' => $data['rating'],
-            'comment' => $data['comment'],
-        ]);
-
-        return redirect()->back()->with('success', 'Review posted successfully.');
-    }
 
     //
     public function add_guide()
     {
         return view('admin.guide.add-guide',[
             'locations'=>Location::get(),
+            'tours'=> Tour::get(),
         ]);
     }
 
-    public function get_spot($id)
-    {
-        $spot = TouristSpot::where('location_id', $id)->get();
-        return response()->json($spot);
-    }
 
     public function save_guide(Request $request)
     {
-        Guide::save_guide($request);
-        Alert::toast('Tour Guide added successfully');
+        Tour::save_tour($request);
+        Alert::toast('Tour Guide added successfully','success');
         return back();
     }
 
@@ -64,27 +37,26 @@ class GuideController extends Controller
     {
 
         return view('admin.guide.manage-guide',[
-            'spots'=>TouristSpot::get(),
-            'guides'=>DB::table('guides')
-                ->join('locations','guides.location_id','locations.id')
-                ->select('guides.*','locations.location_name')
+            'tours'=>DB::table('tours')
+                ->join('locations','tours.location_id','locations.id')
+                ->select('tours.*','locations.name as location_name')
                 ->get(),
         ]);
     }
 
     public function edit_guide($id)
     {
-        $guide_data = Guide::find($id);
+        $guide_data = Tour::find($id);
         return view('admin.guide.edit-guide',[
             'locations'=>Location::get(),
-            'spots'=>TouristSpot::where('location_id',$guide_data->location_id)->get(),
-            'guide'=>Guide::find($id),
+            // 'spots'=>TouristSpot::where('location_id',$guide_data->location_id)->get(),
+            'tour'=>Tour::find($id),
         ]);
     }
 
     public function update_guide(Request $request)
     {
-        Guide::update_guide($request);
+        Tour::update_tour($request);
         Alert::toast('Tourist Guide Updated Successfully');
 
         return back();
@@ -92,7 +64,7 @@ class GuideController extends Controller
 
     public function delete_guide(Request $request)
     {
-        $guide = Guide::find($request->id);
+        $guide = Tour::find($request->id);
         if($guide->image){
             unlink($guide->image);
         }

@@ -31,7 +31,7 @@
         flex: 1;
     }
 
-    .search-input::placeholder{
+    .search-input::placeholder {
         font-size: 14px;
     }
 
@@ -40,7 +40,7 @@
         border: none;
         cursor: pointer;
         /* padding: 6px; */
-        padding-right: 10px; 
+        padding-right: 10px;
     }
 </style>
 
@@ -89,9 +89,9 @@
                                         <ul class="shopping-list">
                                             @if (Auth::user()->is_admin == 0)
                                                 <li>
-                                                    {{-- <div class="">
-                                                <a href="{{route('manage.guide.booking')}}">Tour của bạn</a>
-                                            </div> --}}
+                                                    <div class="">
+                                                        <a href="{{ route('manage.tour.booking') }}">Tour của bạn</a>
+                                                    </div>
                                                 </li>
                                             @elseif(Auth::user()->is_admin == 1)
                                                 <li>
@@ -105,7 +105,8 @@
                                             <ul class="button">
                                                 <li>
                                                     <a href="" class="btn animate"
-                                                        onclick="event.preventDefault(); document.getElementById('logoutForm').submit()">Logout</a>
+                                                        onclick="event.preventDefault(); document.getElementById('logoutForm').submit()">Đăng
+                                                        xuất</a>
                                                 </li>
                                             </ul>
                                             <form action="{{ route('logout') }}" id="logoutForm" method="POST">
@@ -116,7 +117,7 @@
 
                                 </div>
                             @else
-                                <div class="cart-items me-3">
+                                <div class="cart-items me-3 pd-0">
                                     <a href="{{ route('login') }}" id="loginLink" class="user"
                                         style="font-size: 16px;color: #081828">
                                         Đăng Nhập
@@ -177,19 +178,19 @@
 
             <div class="col-lg-6 col-md-6 col-12">
                 {{-- <div class="main-menu-search"> --}}
-                    <div class="navbar-search search-style-5">
-                        <div class="search-box">
-                            <form action="{{ route('search') }}" method="get">
-                                <div class="input-group search-container">
-                                    <input type="text" name="query" placeholder="Tìm kiếm..."
-                                        class="form-control search-input">
-                                    <button type="submit" class="btn search-button">
-                                        <i class="lni lni-search-alt"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                <div class="navbar-search search-style-5">
+                    <div class="search-box">
+                        <form action="{{ route('search') }}" method="get">
+                            <div class="input-group search-container">
+                                <input type="text" name="query" placeholder="Tìm kiếm..."
+                                    class="form-control search-input">
+                                <button type="submit" class="btn search-button">
+                                    <i class="lni lni-search-alt"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
+                </div>
                 {{-- </div> --}}
             </div>
 

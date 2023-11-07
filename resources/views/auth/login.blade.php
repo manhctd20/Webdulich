@@ -45,7 +45,7 @@
             <div class="card-body">
                 <form class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" method="POST">
                     @csrf
-                    <h3 class="text-center m-b-20">Sign In</h3>
+                    <h3 style="font-family: 'Times New Roman', Times, serif" class="text-center m-b-20">ĐĂNG NHẬP</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="email" name="email" required="required" placeholder="User email"> </div>
@@ -59,23 +59,23 @@
                             <div class="d-flex no-block align-items-center">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <label class="form-check-label" for="customCheck1">Remember me</label>
+                                    <label class="form-check-label" for="customCheck1">Ghi nhớ</label>
                                 </div>
                                 <div class="ms-auto">
-                                    <a href="javascript:void(0)" id="to-recover" class="text-muted"><i class="fas fa-lock m-r-5"></i> Forgot pwd?</a>
+                                    <a href="javascript:void(0)" id="to-recover" class="text-muted">Quên mật khẩu</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group text-center">
                         <div class="col-xs-12 p-b-20">
-                            <button class="btn w-100 btn-lg btn-info btn-rounded text-white" type="submit">Log In</button>
+                            <button class="btn w-100 btn-lg btn-info btn-rounded text-white" type="submit">Đăng nhập</button>
                         </div>
                     </div>
 
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            Don't have an account? <a href="{{ route('register') }}" class="text-info m-l-5"><b>Sign Up</b></a>
+                            Bạn đã có tài khoản chưa? <a href="{{ route('register') }}" class="text-info m-l-5"><b>Đăng ký</b></a>
                         </div>
                     </div>
                 </form>
@@ -83,8 +83,8 @@
                     @csrf
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <h3>Recover Password</h3>
-                            <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+                            <h3 style="font-family: 'Times New Roman', Times, serif" class="text-center">Lấy lại mật khẩu</h3>
+                            <p class="text-muted">Nhập Email của bạn và hướng dẫn sẽ được gửi cho bạn!</p>
                         </div>
                     </div>
                     <div class="form-group ">

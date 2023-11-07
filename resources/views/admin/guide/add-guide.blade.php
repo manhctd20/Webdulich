@@ -16,8 +16,8 @@
         <div class="col-7 align-self-center text-end">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb justify-content-end">
-                    <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Add Tour Guide</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Add Tour</li>
                 </ol>
 
             </div>
@@ -32,38 +32,39 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <h4 class="card-title text-center my-4">Add Tour Guide</h4>
+                <h4 class="card-title text-center my-4">Add Tour</h4>
 
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <form action="{{route('save.guide')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('save.guide') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="guide_name" class="form-label">Tour Guide Name</label>
-                                <input type="text" class="form-control" id="guide_name" name="guide_name" placeholder="Enter Tour Guide Name">
+                                <label for="name" class="form-label">Tour Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter Tour Name">
                             </div>
                             <div class="form-group">
-                                <label for="phone_number" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Phone Number">
+                                <label for="duration" class="form-label">Duration</label>
+                                <input type="text" class="form-control" id="duration" name="duration"
+                                    placeholder="Enter Duration">
                             </div>
                             <div class="form-group">
-                                <label for="salary" class="form-label">Salary</label>
-                                <input type="number" class="form-control" id="salary" min="0" name="salary" placeholder="Enter Salary">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" min="0" name="price"
+                                    placeholder="Enter price">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Location</label>
-                                <select  id="tour_location" name="location_id" class="form-control form-select">
+                                <label for="location_id" class="form-label">Location</label>
+                                <select id="location_id" name="location_id" class="form-control form-select">
                                     <option value="" disabled selected>Choose Location</option>
-                                    @foreach($locations as $location)
-                                        <option value="{{$location->id}}">{{$location->location_name}}</option>
+                                    @foreach ($locations as $location)
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Tourist Spot</label>
-                                <select class="select2 m-b-10 select2-multiple" name="spot_id[]" id="spot" style="width: 100%" multiple="multiple" placeholder="Choose Spot">
-                                    <option value="" disabled>Choose Tourist spot</option>
-                                </select>
+                                <label for="description" class="form-label">Description</label>
+                                <textarea name="description" id="description" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="input-file-now" class="form-label">Upload Image</label>
@@ -79,21 +80,14 @@
     </div>
     <!-- ============================================================== -->
     <!-- End Info box -->
-    <script>
-        $(document).ready(function () {
-            $('#tour_location').change(function () {
-
-                var url = '/get-spot/'+$(this).val();
-                axios.get(url).then((res)=>{
-                    var categoryOptions = "<option disabled>Choose Tourist spot</option>";
-                    $.each(res.data, function (index, value) {
-
-                        categoryOptions += '<option  value="'+value.id+'">'+value.spot_name+'</option>';
-                        console.log(value)
-                    });
-                    document.getElementById("spot").innerHTML = categoryOptions;
-                });
-            })
-        })
-    </script>
 @endsection
+@push('script-alt')
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush

@@ -9,6 +9,8 @@ class Location extends Model
 {
     use HasFactory;
     public static $data;
+    public $timestamps = false;
+    
 
     public static function save_location($request)
     {

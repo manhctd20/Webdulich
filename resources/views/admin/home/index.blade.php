@@ -29,7 +29,23 @@
     <!-- Info box -->
     <!-- ============================================================== -->
     <div class="row g-0">
-        <div class="col-lg-3 col-md-6">
+        <div id="chart-container"></div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script>
+            Highcharts.chart('chart-container', {
+                chart: {
+                    type: 'line' // Loại biểu đồ (line, bar, pie, etc.)
+                },
+                title: {
+                    text: 'Biểu đồ doanh thu'
+                },
+                series: [{
+                    name: 'Dữ liệu',
+                    data: [1, 2, 3, 4, 0]
+                }]
+            });
+        </script>
+        {{-- <div class="col-lg-3 col-md-6">
             <div class="card border">
                 <div class="card-body">
                     <div class="row">
@@ -59,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- <div class="col-lg-3 col-md-6">
             <div class="card border">
@@ -93,7 +109,7 @@
             </div>
         </div> --}}
 
-        <div class="col-lg-3 col-md-6">
+        {{-- <div class="col-lg-3 col-md-6">
             <div class="card border">
                 <div class="card-body">
                     <div class="row">
@@ -121,7 +137,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- ============================================================== -->
     <!-- End Info box -->

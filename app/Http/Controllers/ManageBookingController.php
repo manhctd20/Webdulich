@@ -2,130 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookGuide;
-use App\Models\BookHotel;
 use App\Models\Location;
-use App\Models\TouristSpot;
-use Auth;
+use App\Models\Order;
+use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ManageBookingController extends Controller
 {
-    //
-    public function manage_hotel_booking()
+
+    public function manage_tour_booking()
     {
-        return view('user.hotel-booking.manage-hotel-booking',[
-            'bookings'=>DB::table('book_hotels')
-                ->join('users','book_hotels.user_id','users.id')
-                ->join('hotels','book_hotels.hotel_id','hotels.id')
-                ->select('book_hotels.*','users.name','hotels.hotel_name')
-                ->where('book_hotels.user_id',Auth::user()->id)
+        return view('user.tour-booking.manage-tour-booking',[
+            'orders'=>DB::table('orders')
+                ->join('users','orders.user_id','users.id')
+                ->join('tours','orders.tour_id','tours.id')
+                ->select('orders.*','users.name as users_name','tours.name as tours_name')
+                ->where('orders.user_id',Auth::user()->id)
                 ->get(),
         ]);
     }
-
-    public function edit_hotel_booking($id)
+    public function edit_tour_booking($id)
     {
-        $hote_data = BookHotel::find($id);
+        $order = Order::find($id);
 
-        return view('user.hotel-booking.edit-hotel-booking',[
-            'locations'=>Location::get(),
-            'single_data'=> $hote_data,
-            'hotel'=>DB::table('hotels')
-                ->join('locations','hotels.location_id','locations.id')
-                ->select('hotels.*','locations.location_name')
-                ->where('hotels.id',$hote_data->hotel_id)
-                ->first(),
-        ]);
-    }
-
-    public function update_hotel_booking(Request $request)
-    {
-
-        BookHotel::update_hotel_booking($request);
-        Alert::toast('Hotel Book Updated Successfully');
-        return redirect()->route('manage.hotel.booking');
-    }
-
-    public function delete_hotel_booking(Request $request)
-    {
-        $hotel = BookHotel::find($request->id);
-        if($hotel->image){
-            unlink($hotel->image);
-        }
-        $hotel->delete();
-        Alert::toast('Booking deleted successfully');
-
-        return back();
-    }
-
-    public function manage_guide_booking()
-    {
-        return view('user.guide-booking.manage-guide-booking',[
-            'bookings'=>DB::table('book_guides')
-                ->join('users','book_guides.user_id','users.id')
-                ->join('guides','book_guides.guide_id','guides.id')
-                ->select('book_guides.*','users.name','guides.guide_name')
-                ->where('book_guides.user_id',Auth::user()->id)
-                ->get(),
-        ]);
-    }
-    public function edit_guide_booking($id)
-    {
-        $guide_booking = BookGuide::find($id);
-
-        return view('user.guide-booking.edit-guide-booking',[
-//            'locations'=>Location::get(),
-            'spots'=>TouristSpot::get(),
-            'single_guid' =>$guide_booking,
-            'guide'=>DB::table('guides')
-                ->join('locations','guides.location_id','locations.id')
-                ->select('guides.*','locations.location_name')
-                ->where('guides.id',$guide_booking->guide_id)
+        return view('user.tour-booking.edit-tour-booking',[
+           'locations'=>Location::get(),
+            'order' =>$order,
+            'tours'=>DB::table('tours')
+                ->join('locations','tours.location_id','locations.id')
+                ->select('tours.*','locations.name')
+                ->where('tours.id',$order->tour_id)
                 ->first(),
         ]);
     }
 
 
-    public function update_guide_booking(Request $request)
+    public function update_tour_booking(Request $request)
     {
 
-        BookGuide::update_guide_booking($request);
-        Alert::toast('Guide Book Updated Successfully');
+        Order::update_tour_booking($request);
+        Alert::toast('Cập nhật order tour thành công','success');
 
-        return redirect()->route('manage.guide.booking');
+        return redirect()->route('manage.tour.booking');
     }
 
-    public function delete_guide_booking(Request $request)
+    // public function delete_guide_booking(Request $request)
+    // {
+    //     $guide = Order::find($request->id);
+    //     if($guide->image){
+    //         unlink($guide->image);
+    //     }
+    //     $guide->delete();
+    //     Alert::toast('Đơn hàng đã bị hủy', 'warning');
+
+    //     return back();
+    // }
+
+    public function cancelBooking($id)
     {
-        $guide = BookGuide::find($request->id);
-        if($guide->image){
-            unlink($guide->image);
+        $order = Order::find($id);
+
+        if ($order) {
+            $order->status = '2'; // Thay đổi trạng thái
+            $order->save(); // Lưu cập nhật
+
+            return back()->with('success', 'Đơn hàng đã được hủy.');
+        } else {
+            return back()->with('error', 'Không tìm thấy đơn hàng.');
         }
-        $guide->delete();
-        Alert::toast('Booking deleted successfully');
-
-        return back();
-    }
-
-    
-
-    public function edit_guide_payment(Request $request)
-    {
-//        return $request;
-        return view('frontend.guide.edit-guide-payment',[
-            'data'=>$request,
-        ]);
-    }
-
-    public function edit_hotel_payment(Request $request)
-    {
-
-        return view('frontend.hotel.edit-hotel-payment',[
-            'data'=>$request,
-        ]);
     }
 
 }

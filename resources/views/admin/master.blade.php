@@ -80,7 +80,7 @@
 <!-- ============================================================== -->
 @include('admin.include.script')
 @include('sweetalert::alert')
-
+@stack('script-alt')
 </body>
 
 

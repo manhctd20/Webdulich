@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ManageBookingController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TouristSpotController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[WebsiteController::class,'index'])->name('frontend');
 
-Route::get('/search', [SearchController::class,'search'])->name('search');
+Route::get('/search', [WebsiteController::class,'search'])->name('search');
 
-Route::post('/guide/postReview', [GuideController::class,'postReview'])->name('guide.postReview');
+Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
 Route::get('/about-us',[WebsiteController::class,'about_us'])->name('about');
 
@@ -36,7 +35,7 @@ Route::get('/tour-details/{id}',[WebsiteController::class,'tour_details'])->name
 
 Route::get('/tour-payment',[WebsiteController::class,'tour_payment'])->name('tour.payment')->middleware('is_admin');
 
-Route::post('/guide-book',[WebsiteController::class,'guide_book'])->name('guide.book')->middleware('is_admin');
+Route::post('/tour-book',[WebsiteController::class,'tour_book'])->name('tour.book')->middleware('is_admin');
 
 //filter by location start
 
@@ -49,6 +48,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
+Route::get('/order', [OrderController::class,'index'])->name('order')->middleware('is_admin');
 
 //location start
 Route::get('/add-location', [LocationController::class, 'add_location'])->name('add.location')->middleware('is_admin');
@@ -71,10 +71,11 @@ Route::post('/delete-guide', [GuideController::class, 'delete_guide'])->name('de
 
 
 //manage user guide booking start
-Route::get('/manage-guide-booking', [ManageBookingController::class, 'manage_guide_booking'])->name('manage.guide.booking')->middleware('is_admin');
-Route::get('/edit-guide-booking/{id}', [ManageBookingController::class, 'edit_guide_booking'])->name('edit.guide.booking')->middleware('is_admin');
-Route::get('/edit-guide-payment', [ManageBookingController::class, 'edit_guide_payment'])->name('edit.guide.payment')->middleware('is_admin');
-Route::post('/update-guide-booking', [ManageBookingController::class, 'update_guide_booking'])->name('update.guide.booking')->middleware('is_admin');
+Route::get('/manage-tour-booking', [ManageBookingController::class, 'manage_tour_booking'])->name('manage.tour.booking')->middleware('is_admin');
+Route::get('/edit-tour-booking/{id}', [ManageBookingController::class, 'edit_tour_booking'])->name('edit.tour.booking')->middleware('is_admin');
+Route::post('/update-tour-booking', [ManageBookingController::class, 'update_tour_booking'])->name('update.tour.booking')->middleware('is_admin');
 Route::post('/delete-guide-booking', [ManageBookingController::class, 'delete_guide_booking'])->name('delete.guide.booking')->middleware('is_admin');
+Route::delete('/cancel-booking/{id}', [ManageBookingController::class, 'cancelBooking'])->name('cancel.tour.booking');
 ////manage user booking end
 
+Route::post('/accept-tour-booking', [OrderController::class, 'acceptOrder'])->name('acceptOrder')->middleware('is_admin');

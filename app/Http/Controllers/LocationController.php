@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Location;
-Use Alert;
-
+use RealRashid\SweetAlert\Facades\Alert ;
 
 class LocationController extends Controller
 {
@@ -19,7 +18,7 @@ class LocationController extends Controller
     public function save_location(Request $request)
     {
         Location::save_location($request);
-        Alert::toast('Location Added Successfully');
+        Alert::toast('Location Added Successfully','success');
 
         return back();
     }
@@ -41,15 +40,15 @@ class LocationController extends Controller
     public function update_location(Request $request)
     {
         Location::update_location($request);
-        Alert::toast('Location Updated Successfully');
+        Alert::toast('Location Updated Successfully','success');
 
-        return back();
+        return redirect()->route("manage.location");
     }
 
     public function delete_location(Request $request)
     {
         Location::find($request->id)->delete();
-        Alert::toast('Location deleted successfully');
+        Alert::toast('Location deleted successfully','success');
         return back();
     }
 }
