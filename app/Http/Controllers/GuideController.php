@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guide;
-use App\Models\Hotel;
 use App\Models\Location;
-use App\Models\TouristSpot;
+use App\Models\Tour;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Models\Review; // Đảm bảo bạn đã import mô hình Review
-use App\Models\Tour;
 
 class GuideController extends Controller
 {
@@ -57,9 +52,9 @@ class GuideController extends Controller
     public function update_guide(Request $request)
     {
         Tour::update_tour($request);
-        Alert::toast('Tourist Guide Updated Successfully');
+        Alert::toast('Tour Updated Successfully','success');
 
-        return back();
+        return redirect()->route('manage.guide');
     }
 
     public function delete_guide(Request $request)
@@ -69,7 +64,7 @@ class GuideController extends Controller
             unlink($guide->image);
         }
         $guide->delete();
-        Alert::toast('Guide deleted successfully');
+        Alert::toast('Tour deleted successfully','success');
 
         return back();
     }

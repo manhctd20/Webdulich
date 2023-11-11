@@ -59,14 +59,14 @@ class Tour extends Model
                     ->get();
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
-
     public function showTour($id)
     {
         $tour = tour::with('reviews')->find($id);
         return view('frontend.tour.tour-details', compact('tours'));
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

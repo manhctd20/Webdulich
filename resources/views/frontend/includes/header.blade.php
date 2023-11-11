@@ -93,6 +93,11 @@
                                                         <a href="{{ route('manage.tour.booking') }}">Tour của bạn</a>
                                                     </div>
                                                 </li>
+                                                <li>
+                                                    <div class="">
+                                                        <a href="{{ route('change-info', [auth()->id()]) }}">Thay đổi thông tin</a>
+                                                    </div>
+                                                </li>
                                             @elseif(Auth::user()->is_admin == 1)
                                                 <li>
                                                     <div class="">

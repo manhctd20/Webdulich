@@ -3,15 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Review;
 use App\Http\Controllers\Controller;
-use App\Models\Tour;
 use App\Models\User;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB;
-
-
-class ReviewController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +15,11 @@ class ReviewController extends Controller
      */
     public function index() : View
     {
-        // Fetch reviews with associated tours and users
-        $reviews = Review::with(['tour', 'user'])->get();
+        $users = User::get();
 
-        // dd($reviews);
-    
-        return view('admin.review.index', compact('reviews'));
+        return view('admin.user.index')->with(compact('users'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,17 +38,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
 
-        $review = new Review();
-        $review->user_id = $data["user_id"];
-        $review->tour_id = $data["tour_id"];
-        $review->rating = $data["rating"];
-        $review->comment = $data["comment"];
-
-        $review->save();
-
-        return redirect()->back()->with('message', 'Đánh giá thành công!');
     }
 
     /**
@@ -78,7 +60,8 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+        return view('changeInfo')->with(compact('users'));
     }
 
     /**
@@ -90,7 +73,37 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    //     $data = $request->validate([
+    //         "name" => 'required|max:30',
+    //         "email" => 'required|max:50',
+    //         "address" => 'required',
+    //         "phone" => 'required|max:10',
+    //     ], [
+    //             "name.required" => 'Tên phải có ',
+    //             "phone.required" => 'Số điện thoại phải có ',
+    //             "address.required" => 'Địa chỉ phải có',
+    //             "email.required" => 'Email phải có',
+    //             "email.max" => 'Email không được vượt quá :max ký tự',
+    //         ]);
+
+    //     $user = User::find($id);
+    //     $user->name = $data["name"];
+    //     $user->address = $data["address"];
+    //     $user->phone = $data["phone"];
+
+    //     if ($user->email !== $data["email"]) {
+    //         $data->validate([
+    //             "email" => 'unique:users',
+    //         ], [
+    //                 "email.unique" => 'Email đã tồn tại',
+    //             ]);
+    //         $user->email = $data["email"];
+    //     }
+
+    //     $user->save();
+
+    //     return redirect()->back()->with("status", "Cập nhật thông tin thành công");
+
     }
 
     /**
@@ -101,6 +114,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
+
 }

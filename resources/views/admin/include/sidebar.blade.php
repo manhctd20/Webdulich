@@ -6,7 +6,7 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
 
-                    <li> <a class="waves-effect waves-dark" href="{{ url('/') }}" aria-expanded="false"><i><svg
+                    <li> <a class="waves-effect waves-dark" href="{{ url('/admin/home') }}" aria-expanded="false"><i><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-house-door" viewBox="0 0 16 16">
                                     <path
@@ -36,17 +36,34 @@
                             <li><a href="{{ route('manage.guide') }}">Manage Tour</a></li>
                         </ul>
                     </li>
-                    <li> <a class="waves-effect waves-dark" href="{{ route('order') }}"
-                            aria-expanded="false">
-                            <i><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
+                    <li> <a class="waves-effect waves-dark" href="{{ route('order') }}" aria-expanded="false">
+                            <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-map" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
                                 </svg>
                             </i>
                             <span class="hide-menu">Manage Orders</span></a>
                     </li>
-        </li>
+                    <li> <a class="waves-effect waves-dark" href="{{ route('manage.users') }}" aria-expanded="false">
+                            <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-map" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+                                </svg>
+                            </i>
+                            <span class="hide-menu">Manage Users</span></a>
+                    </li>
+                    <li> <a class="waves-effect waves-dark" href="{{ route('manage.reviews') }}" aria-expanded="false">
+                            <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-map" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+                                </svg>
+                            </i>
+                            <span class="hide-menu">Manage Reviews</span></a>
+                    </li>
+                    </li>
                 </ul>
             </nav>
         @else

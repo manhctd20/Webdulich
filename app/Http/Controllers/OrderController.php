@@ -37,7 +37,7 @@ class OrderController extends Controller
             $order->status = '1'; // Thay đổi trạng thái
             $order->save(); // Lưu cập nhật
 
-            return back()->with('success', 'Đơn hàng đã được hủy.');
+            return back()->with('success', 'Đơn hàng đã được xác nhận.');
         } else {
             return back()->with('error', 'Không tìm thấy đơn hàng.');
         }

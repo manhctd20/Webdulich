@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ManageBookingController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,13 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
-Route::get('/order', [OrderController::class,'index'])->name('order')->middleware('is_admin');
+Route::get('/manage-orders', [OrderController::class,'index'])->name('order')->middleware('is_admin');
+Route::get('/manage-users', [UserController::class,'index'])->name('manage.users')->middleware('is_admin');
+Route::get('/manage-reviews', [ReviewController::class,'index'])->name('manage.reviews')->middleware('is_admin');
+Route::get('/change-info/{id}', [WebsiteController::class,'edit'])->name('change-info');
+Route::get('/update/{id}', [WebsiteController::class,'update'])->name('update-info');
+
+Route::post('change-password', [WebsiteController::class, 'changePassword'])->name('change-password');
 
 //location start
 Route::get('/add-location', [LocationController::class, 'add_location'])->name('add.location')->middleware('is_admin');
@@ -78,4 +85,4 @@ Route::post('/delete-guide-booking', [ManageBookingController::class, 'delete_gu
 Route::delete('/cancel-booking/{id}', [ManageBookingController::class, 'cancelBooking'])->name('cancel.tour.booking');
 ////manage user booking end
 
-Route::post('/accept-tour-booking', [OrderController::class, 'acceptOrder'])->name('acceptOrder')->middleware('is_admin');
+Route::post('/accept-tour-booking/{id}', [OrderController::class, 'acceptOrder'])->name('acceptOrder')->middleware('is_admin');

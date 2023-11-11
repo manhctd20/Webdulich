@@ -79,7 +79,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($order->status !== 2)
+                                    @if ($order->status !== 2 && $order->status !== 1)
                                         <div class="d-flex align-items-center">
                                             <form id="accept-form"
                                                 action="{{ route('acceptOrder', ['id' => $order->id]) }}"
@@ -91,9 +91,7 @@
                                                     Xác nhận
                                                 </button>
                                             </form>
-                                            {{-- <a href="{{ route('edit.tour.booking', ['id' => $order->id]) }}"
-                                                class="btn btn-sm btn-primary me-4">  
-                                            </a> --}}
+                                    
                                             <script>
                                                 function cancel() {
                                                     if (confirm('Bạn có chắc chắn muốn hủy Tour?')) {

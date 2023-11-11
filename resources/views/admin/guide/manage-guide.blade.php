@@ -32,7 +32,7 @@
     <!-- ============================================================== -->
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title text-center my-4">Manage Tour Guide</h4>
+            <h4 class="card-title text-center my-4">Manage Tour</h4>
             <div class="table-responsive m-t-40">
                 <table id="config-table" class="table display table-striped border no-wrap">
                     <thead>
