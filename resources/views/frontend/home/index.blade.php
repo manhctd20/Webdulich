@@ -2,6 +2,11 @@
 @section('title')
     Home Page
 @endsection
+<script>
+    .shipping-info {
+        padding: 0 0 50px 0;
+    }
+</script>
 @section('body')
     <section class="hero-area">
         <div class="container">
@@ -114,7 +119,7 @@
                             <h4 class="title">
                                 <a href="#">{{ $tour->name }}</a>
                             </h4>
-                            <p class="my-2">Giá: {{ number_format($tour->price) }}</p>
+                            <p class="my-2">Giá: {{ number_format($tour->price) }}đ</p>
                             <p class="my-2">Thời gian: {{ $tour->duration }}</p>
 
                         </div>
@@ -127,6 +132,10 @@
 
     <section class="shipping-info">
         <div class="container">
+            <div class="section-title">
+                <h4>Hãy chọn Travel Tour</h4>
+                <p style="width: max-content" class="pt-10">Với mong muốn mang đến cho bạn 1 chuyến đi đầy thú vị, Travel Tour hỗ trợ bạn bằng tất cả khả năng của mình.</p>
+            </div>
             <ul style="display: flex">
                 <li>
                     <div class="media-icon">

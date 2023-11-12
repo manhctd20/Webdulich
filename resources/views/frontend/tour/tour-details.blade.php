@@ -220,7 +220,7 @@
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
                             <h2 class="title">{{ $tour->name }}</h2>
-                            <p class="my-2">Giá: {{ number_format($tour->price) }}/người</p>
+                            <p class="my-2">Giá: {{ number_format($tour->price) }}đ/người</p>
                             <p class="my-2">Thời gian: {{ $tour->duration }}</p>
                             <p class="my-2">Địa điểm: {{ $tour->location_name }}</p>
 
@@ -322,7 +322,7 @@
                                 <h4 class="title">
                                     <a href="#">{{ $tour->name }}</a>
                                 </h4>
-                                <p class="my-2">Giá: {{ number_format($tour->price) }}</p>
+                                <p class="my-2">Giá: {{ number_format($tour->price) }}đ</p>
                                 <p class="my-2">Thời gian: {{ $tour->duration }}</p>
                             </div>
                         </div>

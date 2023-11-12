@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert ;
+
 class UserController extends Controller
 {
     /**
@@ -112,8 +114,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_user(Request $request)
     {
+        User::find($request->id)->delete();
+        Alert::toast('User deleted successfully','success');
+        return redirect()->route('manage.users');
     }
 
 }

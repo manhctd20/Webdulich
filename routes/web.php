@@ -50,8 +50,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 Route::get('/manage-orders', [OrderController::class,'index'])->name('order')->middleware('is_admin');
+
 Route::get('/manage-users', [UserController::class,'index'])->name('manage.users')->middleware('is_admin');
+Route::post('/delete-users', [UserController::class,'delete_user'])->name('delete.user')->middleware('is_admin');
+
 Route::get('/manage-reviews', [ReviewController::class,'index'])->name('manage.reviews')->middleware('is_admin');
+Route::post('/delete-reviews', [ReviewController::class,'delete_review'])->name('delete.review')->middleware('is_admin');
+
 Route::get('/change-info/{id}', [WebsiteController::class,'edit'])->name('change-info');
 Route::get('/update/{id}', [WebsiteController::class,'update'])->name('update-info');
 
@@ -81,7 +86,7 @@ Route::post('/delete-guide', [GuideController::class, 'delete_guide'])->name('de
 Route::get('/manage-tour-booking', [ManageBookingController::class, 'manage_tour_booking'])->name('manage.tour.booking')->middleware('is_admin');
 Route::get('/edit-tour-booking/{id}', [ManageBookingController::class, 'edit_tour_booking'])->name('edit.tour.booking')->middleware('is_admin');
 Route::post('/update-tour-booking', [ManageBookingController::class, 'update_tour_booking'])->name('update.tour.booking')->middleware('is_admin');
-Route::post('/delete-guide-booking', [ManageBookingController::class, 'delete_guide_booking'])->name('delete.guide.booking')->middleware('is_admin');
+// Route::post('/delete-guide-booking', [ManageBookingController::class, 'delete_guide_booking'])->name('delete.guide.booking')->middleware('is_admin');
 Route::delete('/cancel-booking/{id}', [ManageBookingController::class, 'cancelBooking'])->name('cancel.tour.booking');
 ////manage user booking end
 

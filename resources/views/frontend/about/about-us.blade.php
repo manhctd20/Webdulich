@@ -6,7 +6,7 @@
     <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-6">
                     <h2>Giới thiệu</h2>
                     <p class="about">
                         Hệ thống là trang web cung cấp các thông tin hữu ích cho khách hàng về những tour du lịch, địa điểm
@@ -22,6 +22,9 @@
                         <li>Điện thoại: 123-456-7890</li>
                         <li>Địa chỉ: Hà Đông, Hà Nội, Việt Nam </li>
                     </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('/') }}website/assets/images/lienhe.jpg" alt="#">
                 </div>
             </div>
             <div class="col-md-6">

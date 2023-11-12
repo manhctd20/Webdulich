@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Review;
 use App\Http\Controllers\Controller;
-use App\Models\Tour;
-use App\Models\User;
+use App\Models\Review;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert ;
+
 
 
 class ReviewController extends Controller
@@ -99,8 +98,10 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_review(Request $request)
     {
-        //
+        Review::find($request->id)->delete();
+        Alert::toast('Review deleted successfully','success');
+        return redirect()->route('manage.reviews');
     }
 }

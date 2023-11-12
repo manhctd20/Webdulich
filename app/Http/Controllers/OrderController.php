@@ -23,7 +23,7 @@ class OrderController extends Controller
         ->join('users','orders.user_id','users.id')
         ->join('tours','orders.tour_id','tours.id')
         ->select('orders.*','users.name as users_name','tours.name as tours_name')
-        ->where('orders.user_id',Auth::user()->id)
+        // ->where('orders.user_id',Auth::user()->id)
         ->get()
     ]);
     }

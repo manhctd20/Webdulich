@@ -79,7 +79,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($order->status !== 2)
+                                    @if ($order->status !== 2 && $order->status !== 1)
                                         <div class="d-flex align-items-center">
                                             <a href="{{ route('edit.tour.booking', ['id' => $order->id]) }}"
                                                 class="btn btn-sm btn-primary me-4"><svg xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,43 @@
 </p>
 <![endif]-->
 <style>
-    /* CSS */
+    .shipping-info {
+        padding: 0 0 50px 0;
+    }
+    .cart-items .shopping-item .shopping-list li a:hover {
+        color: black;
+        font-weight: 700;
+    }
+    .cart-items .shopping-item {
+        width: 200px !important;
+    }
+    .cart-items .shopping-item .button .btn {
+        padding: 6px 30px;
+    }
+    #nav li a::after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        border-radius: 3px;
+        width: 100%;
+        transform: scaleX(0);
+        background: #0167F3;
+        bottom: 0;
+        left: 0;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+
+    #nav>li>a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+        width: 100%;
+    }
+
+    .header .header-middle {
+        height: 70px;
+    }
+
     .search-container {
         display: flex;
         align-items: center;
@@ -61,7 +97,8 @@
                 <div class="col-lg-3 col-md-3 col-7">
 
                     <a class="navbar-brand" href="{{ route('frontend') }}">
-                        <h5 style="font-size: 24px ">Travel Tour</h5>
+                        {{-- <h5 style="font-size: 24px ">Travel Tour</h5> --}}
+                        <img src="{{ asset('/') }}website/assets/images/logo.png" alt="#">
                     </a>
 
                 </div>
@@ -89,12 +126,12 @@
                                         <ul class="shopping-list">
                                             @if (Auth::user()->is_admin == 0)
                                                 <li>
-                                                    <div class="">
+                                                    <div class="item">
                                                         <a href="{{ route('manage.tour.booking') }}">Tour của bạn</a>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="">
+                                                    <div class="item">
                                                         <a href="{{ route('change-info', [auth()->id()]) }}">Thay đổi thông tin</a>
                                                     </div>
                                                 </li>
