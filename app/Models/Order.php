@@ -12,7 +12,7 @@ class Order extends Model
 
     public static $data;
     protected $guarded = [];
-    public $timestamps = false;
+    // public $timestamps = false;
     public static function book_tour($request)
     {
         self::$data = new Order();
@@ -36,17 +36,6 @@ class Order extends Model
         $fromDate = $request->input('fromDate');
         $total_price = $request->input('totalPrice');
 
-        // // Thực hiện cập nhật dữ liệu đặt tour
-        // DB::table('orders')
-        //     ->where('id', $order_id)
-        //     ->update([
-        //         'phone' => $phone,
-        //         'num_people' => $num_people,
-        //         'address' => $address,
-        //         'fromDate' => $fromDate,
-        //         'totalPrice' => $total_price,
-        //     ]);
-
         // // Trả về kết quả hoặc thực hiện các xử lý khác nếu cần
         // Kiểm tra xem order_id có tồn tại hay không
         $order = Order::find($order_id);
@@ -65,5 +54,26 @@ class Order extends Model
             // Xử lý khi order_id không tồn tại (có thể báo lỗi hoặc thực hiện xử lý tùy ý)
             // Ví dụ: return response()->json(['error' => 'Không tìm thấy đơn hàng'], 404);
         }
+    }
+
+    public static function getOrdersData()
+    {
+        $ordersData = Order::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('SUM(CASE WHEN (status = 0 OR status = 1) THEN 1 ELSE 0 END) as completed_orders'),
+            DB::raw('SUM(CASE WHEN status = 2 THEN 1 ELSE 0 END) as canceled_orders')
+        )
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+        $ordersData = $ordersData->map(function ($item) {
+            return [
+                'date' => $item->date,
+                'completed_orders' => (int)$item->completed_orders,
+                'canceled_orders' => (int)$item->canceled_orders,
+            ];
+        });
+        
+        return $ordersData;
     }
 }

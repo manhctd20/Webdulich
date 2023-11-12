@@ -32,10 +32,21 @@ class HomeController extends Controller
         ]);
     }
     public function adminHome()
-    {
-        return view('admin.home.index',[
-            'locations'=>Location::get(),
-            'guides'=>Tour::get()
-        ]);
-    }
+{
+    $ordersData = Order::getOrdersData(); 
+
+    // Separate data into arrays for Highcharts
+    $completedOrdersData = $ordersData->pluck('completed_orders')->toArray();
+    $canceledOrdersData = $ordersData->pluck('canceled_orders')->toArray();
+    $categoriesForChart = $ordersData->pluck('date')->toArray();
+
+    // Uncomment the following line for debugging
+    // dd($completedOrdersData, $canceledOrdersData, $categoriesForChart);
+
+    return view('admin.home.index', [
+        'completedOrdersData' => json_encode($completedOrdersData),
+        'canceledOrdersData' => json_encode($canceledOrdersData),
+        'categoriesForChart' => json_encode($categoriesForChart),
+    ]);
+}
 }
