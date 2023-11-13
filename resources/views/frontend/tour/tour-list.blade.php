@@ -2,6 +2,30 @@
 @section('title')
     Tour List
 @endsection
+<style>
+    .pagination {
+        margin: 20px 0;
+    }
+
+    .pagination .page-item {
+        display: inline;
+    }
+
+    .pagination .page-link {
+        border: 1px solid #1ABC9C;
+        color: #1ABC9C;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #1ABC9C;
+        color: #fff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        color: #ccc;
+        pointer-events: none;
+    }
+</style>
 @section('body')
     <section class="product-grids section">
         <div class="container">
@@ -85,6 +109,23 @@
 
                                 </div>
                                 {{-- {{ $tours->links() }} --}}
+                                {{-- <ul class="pagination justify-content-center">
+                                    <li class="page-item {{ $tour->onFirstPage() ? 'disabled' : '' }}">
+                                        <a class="page-link" href="{{ $tour->previousPageUrl() }}">
+                                            <span>Previous</span>
+                                        </a>
+                                    </li>
+                                    @for ($i = 1; $i <= $tour->lastPage(); $i++)
+                                        <li class="page-item {{ $i == $tour->currentPage() ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $tour->url($i) }}">{{ $i }}</a>
+                                        </li>
+                                    @endfor
+                                    <li class="page-item {{ $tour->hasMorePages() ? '' : 'disabled' }}">
+                                        <a class="page-link" href="{{ $tour->nextPageUrl() }}">
+                                            <span>Next</span>
+                                        </a>
+                                    </li>
+                                </ul> --}}
                             </div>
                             <div class="tab-pane show active fade" id="nav-list" role="tabpanel"
                                 aria-labelledby="nav-list-tab">
@@ -129,7 +170,23 @@
                                     @endforeach
                                 </div>
                                 {{-- {{ $tours->links() }} --}}
-
+                                {{-- <ul class="pagination justify-content-center">
+                                    <li class="page-item {{ $tour->onFirstPage() ? 'disabled' : '' }}">
+                                        <a class="page-link" href="{{ $tour->previousPageUrl() }}">
+                                            <span>Previous</span>
+                                        </a>
+                                    </li>
+                                    @for ($i = 1; $i <= $tour->lastPage(); $i++)
+                                        <li class="page-item {{ $i == $tour->currentPage() ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $tour->url($i) }}">{{ $i }}</a>
+                                        </li>
+                                    @endfor
+                                    <li class="page-item {{ $tour->hasMorePages() ? '' : 'disabled' }}">
+                                        <a class="page-link" href="{{ $tour->nextPageUrl() }}">
+                                            <span>Next</span>
+                                        </a>
+                                    </li>
+                                </ul> --}}
                             </div>
                         </div>
                     </div>

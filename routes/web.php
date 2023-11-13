@@ -57,10 +57,10 @@ Route::post('/delete-users', [UserController::class,'delete_user'])->name('delet
 Route::get('/manage-reviews', [ReviewController::class,'index'])->name('manage.reviews')->middleware('is_admin');
 Route::post('/delete-reviews', [ReviewController::class,'delete_review'])->name('delete.review')->middleware('is_admin');
 
-Route::get('/change-info/{id}', [WebsiteController::class,'edit'])->name('change-info');
-Route::get('/update/{id}', [WebsiteController::class,'update'])->name('update-info');
+Route::get('/change-info/{id}', [UserController::class,'edit'])->name('change-info');
+Route::get('/update/{id}', [UserController::class,'update'])->name('update-info');
 
-Route::post('change-password', [WebsiteController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
 
 //location start
 Route::get('/add-location', [LocationController::class, 'add_location'])->name('add.location')->middleware('is_admin');
