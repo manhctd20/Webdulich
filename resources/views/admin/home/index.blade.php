@@ -86,7 +86,7 @@
                     categories: categoriesForChart,
                 },
                 series: [{
-                    name: 'Completed Orders',
+                    name: 'Orders',
                     data: completedOrdersData,
                 }, {
                     name: 'Canceled Orders',

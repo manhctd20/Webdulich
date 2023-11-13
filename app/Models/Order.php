@@ -60,7 +60,7 @@ class Order extends Model
     {
         $ordersData = Order::select(
             DB::raw('DATE(created_at) as date'),
-            DB::raw('SUM(CASE WHEN (status = 0 OR status = 1) THEN 1 ELSE 0 END) as completed_orders'),
+            DB::raw('SUM(CASE WHEN (status = 0 OR status = 1 OR status = 2) THEN 1 ELSE 0 END) as completed_orders'),
             DB::raw('SUM(CASE WHEN status = 2 THEN 1 ELSE 0 END) as canceled_orders')
         )
         ->groupBy('date')

@@ -134,7 +134,7 @@ class WebsiteController extends Controller
     {
 
         Order::book_tour($request);
-        Alert::toast('Tour Booked Successfully','success');
+        Alert::toast('Đặt Tour thành công','success');
 
         return redirect()->route('tour.list');
     }
